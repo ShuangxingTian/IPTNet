@@ -104,13 +104,13 @@ class IPTNet(nn.Module):
         self.conv3 = nn.Conv2d(40, 32, (3, 3), (1, 1), padding='same', bias=True)
 
         self.conv4 = nn.Conv2d(64, 64, (3, 3), (1, 1), padding='same', bias=True)
-        self.Transpose1 = nn.ConvTranspose2d(64, 1, (2, 2), (2, 2), (0, 0), bias=False)
+        self.Transpose1 = nn.ConvTranspose2d(64, 1, (4, 4), (4, 4), (0, 0), bias=False)
 
         self.conv5 = nn.Conv2d(1, 64, (3, 3), (1, 1), padding='same', bias=True)
         self.conv6 = nn.Conv2d(64, 64, (3, 3), (1, 1), padding='same', bias=True)
         self.conv7 = nn.Conv2d(64, 1, (3, 3), (1, 1), padding='same', bias=True)
 
-        self.Transpose2 = nn.ConvTranspose2d(1, 1, (2, 2), (2, 2), (0, 0), bias=False)
+        self.Transpose2 = nn.ConvTranspose2d(1, 1, (4, 4), (4, 4), (0, 0), bias=False)
         self.conv8 = nn.Conv2d(1, 32, (3, 3), (1, 1), padding='same', bias=True)
         self.conv9 = nn.Conv2d(1, 32, (1, 1), (1, 1), padding='same', bias=True)
 

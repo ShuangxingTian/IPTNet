@@ -6,13 +6,13 @@ from option import args
 from rcan import RCAN
 from IPTNet_pt import IPTNet, pth_to_pt
 
-EXP_DATA = "HEVC_IPTNet_X2cnn_QP37_20211206"  # 模型路径
+EXP_DATA = "HEVC_IPTNet_X2cnn_QP27_20211208"  # 模型路径
 MODEL_PATH = "./checkpoints/%s/" % EXP_DATA
 TESTOUT_PATH = "./testout/%s/" % EXP_DATA
 OUT_DATA_PATH = "./outdata/%s/" % EXP_DATA
 OUT_MODEL_PATH = r"D:\tian\HM-16.9-pt\model\IPTNet-pt"
 
-ORIGINAL_PATH = r"D:\tian\DataSets\interpolation\test\x2\low\qp37"
+ORIGINAL_PATH = r"D:\tian\DataSets\interpolation\test\x2\low\qp27"
 GT_PATH = r"D:\tian\DataSets\interpolation\test\x2\high"
 
 TEST_START_EPOCH = 0

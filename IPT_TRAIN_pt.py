@@ -9,20 +9,20 @@ from option import args
 from rcan import RCAN
 from IPTNet_pt import IPTNet
 
-EXP_DATA = 'HEVC_IPTNet_X2cnn_QP37_20211206'  # 模型存放文件夹
-LOW_DATA_PATH = r"D:\tian\DataSets\interpolation\hevc\x2\qp37"  # 数据存放路径
-HIGH_DATA_PATH = r"D:\tian\DataSets\interpolation\x2_gt"  # 标签存放路径
+EXP_DATA = 'HEVC_IPTNet_X4cnn_QP22_20211209'  # 模型存放文件夹
+LOW_DATA_PATH = r"D:\tian\DataSets\interpolation\hevc\x4\qp22"  # 数据存放路径
+HIGH_DATA_PATH = r"D:\tian\DataSets\interpolation\x4_gt"  # 标签存放路径
 LOG_PATH = "./logs/%s/" % EXP_DATA  # log路径
 MODEL_PATH = "./checkpoints/%s/" % EXP_DATA  # 存储训练好的模型
 GT_PATCH_SIZE = (64, 64)  # 卷积神经网络中输出图像的大小
-REC_PATCH_SIZE = (32, 32)  # 卷积神经网络中输入图像的大小
+REC_PATCH_SIZE = (16, 16)  # 卷积神经网络中输入图像的大小
 PRE_BATCH_SIZE = 6400  # 加载数据集的BATCH数
 BATCH_SIZE = 64  # 神经网络的BATCH数
 BASE_LR = 1e-3  # 基础学习率
 MAX_EPOCH = 500  # 训练轮次
 attenuation_epochs = 20  # 学习率衰减轮次
 RESUME = False  # 是否断点续训
-last_checkpoint = "./checkpoints/HEVC_IPTNet_X2cnn_QP22_20211205/HEVC_IPTNet_X2cnn_QP22_20211205_135.pth"  # 断点路径
+last_checkpoint = "./checkpoints/HEVC_IPTNet_X2cnn_QP37_20211206/HEVC_IPTNet_X2cnn_QP37_20211206_471.pth"  # 断点路径
 
 if __name__ == '__main__':
     train_list = get_train_list(load_file_list(LOW_DATA_PATH), load_file_list(HIGH_DATA_PATH))  # 载入数据集
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     optimizer = torch.optim.AdamW(model.parameters(), lr=BASE_LR, weight_decay=1e-2)
     # 即每个scheduler.step都衰减lr = lr * gamma,即进行指数衰减
     scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.75)
-    # 断点续训， 从最后一个模型中加载各种参数
+    # 断点续训，从最后一个模型中加载各种参数
     if RESUME:
         path_checkpoint = last_checkpoint
         checkpoint = torch.load(path_checkpoint)  # 加载断点
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     log = os.path.join(LOG_PATH, "0000")
     toatal_tb = SummaryWriter(LOG_PATH)
     last_epoch = start_epoch
-    for epoch in range(last_epoch, last_epoch + MAX_EPOCH):
+    for epoch in range(last_epoch, MAX_EPOCH):
         # 模型、日志保存路径
         model_file = os.path.join(MODEL_PATH, "%s_%03d.pth" % (EXP_DATA, epoch))
         log_file = os.path.join(LOG_PATH, "%03d" % epoch)
