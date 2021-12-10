@@ -1,7 +1,7 @@
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--scale',              type=int, default=4,
+parser.add_argument('--scale',              type=int, default=2,
                     help='super resolution scale')
 parser.add_argument('--n_colors',           type=int, default=1,
                     help='number of color channels to use')
@@ -39,13 +39,13 @@ parser.add_argument('--save_minloss_model', type=bool, default=True,
 parser.add_argument('--last_checkpoint',    type=str, default="./checkpoints/HEVC_IPTNet_X4cnn_QP22_20211209/HEVC_IPTNet_X4cnn_QP22_20211209_044.pth",
                     help='Model storage folder')
 # test
-parser.add_argument('--load_path',          type=str, default='HEVC_IPTNet_X4cnn_QP22_20211210',
+parser.add_argument('--load_path',          type=str, default='HEVC_IPTNet_X2cnn_QP37_20211206',
                     help='Model storage folder')
 parser.add_argument('--out_model_path',     type=str, default=r"D:\tian\HM-16.9-pt\model\IPTNet",
                     help='Model storage folder')
-parser.add_argument('--low_path',           type=str, default=r"D:\tian\DataSets\interpolation\test\x4\low\qp22",
+parser.add_argument('--low_path',           type=str, default=r"D:\tian\DataSets\interpolation\test\x2\low\qp37",
                     help='Model storage folder')
-parser.add_argument('--gt_path',            type=str, default=r"D:\tian\DataSets\interpolation\test\x4\high",
+parser.add_argument('--gt_path',            type=str, default=r"D:\tian\DataSets\interpolation\test\x2\high",
                     help='Model storage folder')
 parser.add_argument('--test_start_epoch',   type=int, default=0,
                     help='Model storage folder')

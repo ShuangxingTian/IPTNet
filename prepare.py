@@ -39,7 +39,7 @@ class Prepare:
         self.rec_patch_size = (self.args.gt_patch_size[0] // self.args.scale, self.args.gt_patch_size[1] // self.args.scale)
 
     def prepare_nn_data(self, train_list):
-        thread_num = int(self.pre_batch_size / 8)
+        thread_num = int(self.pre_batch_size / 32)
         batchSizeRandomList = random.sample(range(0, len(train_list)), thread_num)
         input_list = [0 for i in range(thread_num)]
         gt_list = [0 for i in range(thread_num)]
